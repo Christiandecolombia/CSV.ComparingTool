@@ -8,9 +8,11 @@ using FileHelpers;
 namespace CSV.ComparingTool
 {
     [DelimitedRecord(",")]
-    public class Domain
+    public class CompletedDomain
     {
         public string ID { get; set; }
+        public string Worker { get; set; }
         public string Name { get; set; }
+        public string IsDisalloweded { get; set; }
     }
 }

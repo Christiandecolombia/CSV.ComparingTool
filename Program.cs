@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.
 
 namespace CSV.ComparingTool
 {
@@ -16,32 +15,37 @@ namespace CSV.ComparingTool
         {
             // Reading files
             Console.WriteLine("CSV Comparing Tool");
-            string file1 = @"C:\Users\chris\OneDrive\Desktop\UK_Domains_Last_900.csv";
-            string file2 = @"C:\Users\chris\OneDrive\Desktop\UK_Domains_Last_900.csv";
+            string file1 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\UK Domains.csv";
+            string file2 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\UK Domain Results.csv";
             Console.WriteLine("Reading files");
 
             // CSV Client, creating lists
             CSVFileClient csvClient = new CSVFileClient();
-            List<Domain> file1Domains = csvClient.ReadFile(file1);
-            List<Domain> file2Domains = csvClient.ReadFile(file2);
-            Console.WriteLine(file1Domains.Count + " In file 1.");
-            Console.WriteLine(file2Domains.Count + " In file 2.");
+            List<Domain> domains = csvClient.ReadFileDomains(file1);
+            Console.WriteLine(domains.Count + " In file 1.");
+            List<Domain> completedDomains = csvClient.ReadFileDomains(file2);
+            Console.WriteLine(completedDomains.Count + " In file 2.");
 
             // Comparing lists
-            //List<Domain> outputDomains = new List<Domain>(file1Domains);
-            foreach (Domain domain1 in file1Domains)
+            for (int i = 0; i < completedDomains.Count; i++)
             {
-                foreach (Domain domain2 in file2Domains)
+                Console.Write($"\r                                                                                      ");
+                Console.Write($"\r{completedDomains[i].Name}");
+                Domain domain = domains.SingleOrDefault(p => p.Name == completedDomains[i].Name);
+                if(domain != null)
                 {
-                    if(domain1.Name == domain2.Name)
-                    {
-
-                    }
-
+                    domains.Remove(domain);
                 }
+                     
+
             }
 
+            Console.WriteLine("");
+            Console.WriteLine("Unique Domains: " + domains.Count);
+            csvClient.WriteFile(domains);
 
+
+            Console.WriteLine("");
             Console.WriteLine("Press any key to close");
             Console.ReadLine();
 
