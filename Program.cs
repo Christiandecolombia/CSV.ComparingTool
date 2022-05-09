@@ -9,14 +9,40 @@ namespace CSV.ComparingTool
 {
     internal class Program
     {
-        private const string OutputFileName = "Output.csv";
-        private const string OutputDomains = "OutputDomains.txt";
         static void Main(string[] args)
         {
             // Reading files
             Console.WriteLine("CSV Comparing Tool");
-            string file1 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\RunningFile.csv";
-            string file2 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\Test.csv";
+
+            string file1 = string.Empty;
+            while (true)
+            {
+                Console.Write("\nEnter the unverified domain list csv file path: ");
+                file1 = Console.ReadLine();
+
+                if (File.Exists(file1))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Invalid file path");
+            }
+
+            string file2 = string.Empty;
+            while (true)
+            {
+                Console.Write("\nEnter the verified domain list csv file path: ");
+                file2 = Console.ReadLine();
+
+                if (File.Exists(file1))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Invalid file path");
+            }
+
+
             Console.WriteLine("Reading files");
 
             // CSV Client, creating lists
