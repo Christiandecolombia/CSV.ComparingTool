@@ -15,16 +15,17 @@ namespace CSV.ComparingTool
         {
             // Reading files
             Console.WriteLine("CSV Comparing Tool");
-            string file1 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\UK Domains.csv";
-            string file2 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\UK Domain Results.csv";
+            string file1 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\RunningFile.csv";
+            string file2 = @"C:\Users\v-rchristian\OneDrive - Microsoft\Desktop\Test.csv";
             Console.WriteLine("Reading files");
 
             // CSV Client, creating lists
             CSVFileClient csvClient = new CSVFileClient();
             List<Domain> domains = csvClient.ReadFileDomains(file1);
-            Console.WriteLine(domains.Count + " In file 1.");
-            List<Domain> completedDomains = csvClient.ReadFileDomains(file2);
-            Console.WriteLine(completedDomains.Count + " In file 2.");
+            Console.WriteLine(domains.Count + " In file 1");
+            List<CompletedDomain> completedDomains = csvClient.ReadFileDomainsCompleted(file2);
+            //List<Domain> completedDomains = csvClient.ReadFileDomains(file2);
+            Console.WriteLine(completedDomains.Count + " In file 2");
 
             // Comparing lists
             for (int i = 0; i < completedDomains.Count; i++)

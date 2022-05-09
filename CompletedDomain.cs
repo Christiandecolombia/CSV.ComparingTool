@@ -7,12 +7,31 @@ using FileHelpers;
 
 namespace CSV.ComparingTool
 {
+    [IgnoreEmptyLines]
     [DelimitedRecord(",")]
     public class CompletedDomain
     {
-        public string ID { get; set; }
+
+        public string Id { get; set; }
+
         public string Worker { get; set; }
+
         public string Name { get; set; }
-        public string IsDisalloweded { get; set; }
+
+        [FieldConverter(ConverterKind.Boolean)]
+        public bool IsDisalloweded { get; set; }
+
+        [FieldOptional]
+
+        public string Words { get; set; }
+
+        [FieldOptional]
+        public string Error { get; set; }
+
+        [FieldOptional]
+        public string Error2 { get; set; }
+
+        [FieldOptional]
+        public string Error3 { get; set; }
     }
 }
